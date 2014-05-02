@@ -1,0 +1,6 @@
+#/etc/bash
+service picammory stop
+rm -f /var/log/picammory/picammory.log
+service picammory start
+sleep 3
+more /var/log/picammory/picammory.log

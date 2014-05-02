@@ -1,0 +1,2 @@
+#/etc/bash
+service picammory restart
