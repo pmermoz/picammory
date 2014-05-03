@@ -62,11 +62,6 @@ class Picammory(object):
             for gpio_pin in (5, 23, 24, 25):
                 subprocess.call(['/usr/local/bin/gpio', 'export', str(gpio_pin), 'out'])
 
-            #/usr/local/bin/gpio export 5 out
-            #/usr/local/bin/gpio export 23 out
-            #/usr/local/bin/gpio export 24 out
-            #/usr/local/bin/gpio export 25 out
-
             wiringpi2.wiringPiSetupSys()
 
             #---

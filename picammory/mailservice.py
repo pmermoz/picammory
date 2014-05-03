@@ -99,17 +99,16 @@ class MailService(object):
             root_container.preamble = 'This is a multi-part message in MIME format.'
             body_container = MIMEMultipart(_subtype='alternative')
             html_body = MIMEText("""
-    <html>
-      <head>
-      </head>
-      <body>
-        <b>Please see the attachment below!</b><br/>
-        <br/>
-        <img src="cid:%s"/>
-      </body>
-    </html>""" % (filename), _subtype='html')
-            text_body = MIMEText("""
-    Please see the attachment named %s.""" % (filename), _subtype='plain')
+<html>
+  <head>
+  </head>
+  <body>
+    <b>Please see the attachment below!</b><br/>
+    <br/>
+    <img src="cid:%s"/>
+  </body>
+</html>""" % (filename), _subtype='html')
+            text_body = MIMEText("""Please see the attachment named %s.""" % (filename), _subtype='plain')
             image_attachment = MIMEImage(image_stream.read())
             image_attachment.add_header('Content-Id', '<%s>' % (filename))
             # Mark the image as an attachment for plain-text clients

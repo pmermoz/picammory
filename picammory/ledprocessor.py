@@ -47,7 +47,7 @@ class LEDProcessor(object):
         cls._led_blue_pin = int(config_gpio['ledBluePin'])
         cls._led_camera_pin = int(config_gpio['ledCameraPin'])
 
-        print("LED: Red:{} Green:{} Blue:{} Camera:{}".format(cls._led_red_pin, cls._led_green_pin, cls._led_blue_pin, cls._led_camera_pin))
+        log.info("LED: Red:{} Green:{} Blue:{} Camera:{}".format(cls._led_red_pin, cls._led_green_pin, cls._led_blue_pin, cls._led_camera_pin))
 
         #GPIO.setmode(GPIO.BCM)
 
