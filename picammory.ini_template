@@ -1,0 +1,23 @@
+[camera]
+name = Garden
+
+[smtp]
+username = <mail_username>
+password = <mail_password>
+usetls = YES
+server = <email_server_address>
+
+[email]
+recipient = <recipient_email_address>
+sender = <device_email_address>
+
+[ftp]
+username = <ftp_username>
+password = <ftp_password>
+server = <server name>
+
+[gpio]
+ledRedPin = 23
+ledGreenPin = 24
+ledBluePin = 25
+ledCameraPin = 5

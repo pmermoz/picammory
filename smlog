@@ -1,0 +1,2 @@
+#/etc/bash
+more /var/log/picammory/picammory.log

@@ -1,0 +1,60 @@
+### BEGIN INIT INFO
+# Provides: Picammory Daemon
+# Required-Start: $syslog
+# Required-Stop: $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start Picammory Daemon at boot time
+# Description: Start Picammory Daemon at boot time.
+### END INIT INFO
+
+case "$1" in
+ start)
+   echo "Starting Picammory Server for pi"
+   if [ `whoami` = "pi" ]
+   then
+      python3 /home/pi/picammory/picammory/picammorydaemon.py start
+   else
+      su pi -c 'python3 /home/pi/picammory/picammory/picammorydaemon.py start'
+   fi
+   echo "."
+   ;;
+
+ stop)
+   echo "Stopping Picammory Server"
+   if [ `whoami` = "pi" ]
+   then
+      python3 /home/pi/picammory/picammory/picammorydaemon.py stop
+   else
+      su pi -c 'python3 /home/pi/picammory/picammory/picammorydaemon.py stop'
+   fi
+   echo "."
+   ;;
+
+ restart)
+   echo "Restarting Picammory Server"
+   if [ `whoami` = "pi" ]
+   then
+      python3 /home/pi/picammory/picammory/picammorydaemon.py restart
+   else
+      su pi -c 'python3 /home/pi/picammory/picammory/picammorydaemon.py restart'
+   fi
+   echo "."
+   ;;
+
+ status)
+   if [ `whoami` = "pi" ]
+   then
+      python3 /home/pi/picammory/picammory/picammorydaemon.py status
+   else
+      su pi -c 'python3 /home/pi/picammory/picammory/picammorydaemon.py status'
+   fi
+   ;;
+
+ *)
+   echo "Usage: service picammory {start|stop|restart|status}"
+   exit 1
+   ;;
+esac
+
+exit 0
