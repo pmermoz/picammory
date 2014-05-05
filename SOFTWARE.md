@@ -1,10 +1,8 @@
-picammory
-=========
+# Picammory Software
+
 
 The Garden's Camera based on Raspberry Pi (with motion detection)
 
-
-# Installation
 
 ## Setting Up the Raspberry Pi
 
@@ -31,7 +29,9 @@ From the Terminal run:
     sudo dd if=path_of_your_image.img of=/dev/diskn bs=1m
 ```
 Remember to replace n with the number that you noted before!
->> ***<!> Warning:*** giving a wrong '/dev/diskn' can damage your computer, be extremely careful with this command.
+
+	<!> Warning: giving a wrong number for '/dev/diskn' can damage your computer,
+		be extremely careful with 'dd' command.
 
 Wait a LONG time!
 
