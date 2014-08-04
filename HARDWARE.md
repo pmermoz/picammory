@@ -7,54 +7,54 @@ The Garden's Camera based on Raspberry Pi (with motion detection)
 ## Camera Body
 
 The SecurityMan SM-3802 include an aluminum body with plenty of space inside.  
-![Camera Back](./image/Camera_out_body.jpg)
+![Camera Back](./image/Camera_out_body.png)
 
 The presence of multiple grove provide a way to secure the internal circuit board.  
-![Camera Back](./image/Camera_in_body.jpg)
+![Camera Back](./image/Camera_in_body.png)
 
 The only complain is about the arm, very difficult to have a precise horizontal rotation of the camera, very difficult to hold tight.
 
 The Raspberry Pi and all component are placed on the Styrene Sheets, this way it is easy to insert and remove the Pi from the body. 0.08 thick styrene fit perfectly in the lower grove.  
-![Camera Back](./image/Camera_in.jpg)  
+![Camera Back](./image/Camera_in.png)  
 
 ## Power Supply & Network connector
 
 
 The Raspberry Pi is powered throughout the ethernet cable. When an ethernet cable is used for 10 and 100Mb only 4 cable over the 8 available are used for data. The passive PoE Injector used the remaining 4 unused cables to provide the 12DC powers. In the camera, a DC converter is used to convert the 12V to the Raspberry friendly 5V.
 
-![Camera Back](./image/power.jpg)
+![Camera Back](./image/camera_power.png)
 
-On the Raspberry board, I want to let the maximum of space next to the USB connector for future extention. All the network/power connector are push on one side of the board, within a very limited space.  
+On the Raspberry board, I want to let the maximum of space next to the USB connector for future extension. All the network/power connector are push on one side of the board, within a very limited space.  
 
-![Camera Back](./image/Camera_in_network1.jpg)
+![Camera Back](./image/Camera_in_network1.png)
 
  A Keystone Jack is fixed on the board, the 4 data cable (green and orange) are connected to a Cat5e male crimp connector.   
 The Cat5e male connector was cut in half to fit in the small available space .  
-![Camera Back](./image/Camera_in_network2.jpg)
+![Camera Back](./image/Camera_in_network2.png)
 
 From the Keystone Jack, the 4 power cable (blue and brown) are connected to the input of the DC converter. The cable goes under the board where the UBEC DC converter is fixed   
-![Camera Back](./image/Camera_in_bottom.jpg)
+![Camera Back](./image/Camera_in_bottom.png)
  
 The 5V power cable is them connected to a micro USB connector with some Heat Shrink tubing around.
-![Camera Back](./image/Micro_USB_male_connector1.jpg)
-![Camera Back](./image/Micro_USB_male_pin.png)
-![Camera Back](./image/Micro_USB_male_connector2.jpg)
+![Camera Back](./image/Camera_Micro_USB_male_connector1.png)
+![Camera Back](./image/Camera_Micro_USB_male_pin.png)
+![Camera Back](./image/Camera_Micro_USB_male_connector2.png)
 
 And finally the power cable is connected to the Raspberry Pi.   
 The custom power cable permit the connection in the small space between the front face and the Raspberry Pi.  
 
-![Camera Back](./image/Camera_in_usb_power.jpg)
+![Camera Back](./image/Camera_in_usb_power.png)
 
 A square hole is perform in the back of the camera cover for the Keystone Jack.  
 
-![Camera Back](./image/Camera_in_back.jpg)
+![Camera Back](./image/Camera_in_back.png)
 
 ## Camera Sensor
 
 A custom front plate is cut from the Styrene Sheets to maintain the sensor in place, and hide the Camera inside from curious ;-)   
 
-![Camera Back](./image/Camera_in_custom_front.jpg)
-![Camera Back](./image/Camera_in_front.jpg)
+![Camera Back](./image/Camera_in_custom_front.png)
+![Camera Back](./image/Camera_in_front.png)
 
 Note: In this configuration, the sensor is rotated by 180°.
 
@@ -72,18 +72,17 @@ Blue  |2.5V|150
 
 The position of the LED was selected to reduce the impact on the GPIO port and keep the cable on the same side of the board to not interfere with the camera sensor cable.
 
-![Camera Back](./image/Camera_in_led.jpg)
+![Camera Back](./image/Camera_in_led.png)
 
 
-![Camera Back](./image/Camera_diagram.jpg)
+![Camera Back](./image/Camera_diagram.png)
 
 ## Temperature And Humidity Sensor
 
 TBD
 
-![Camera Back](./image/Camera_in_humidity_sensor.jpg)
-![Camera Back](./image/Camera_in_humidity_sensor_connector.jpg)
-![Camera Back](./image/Camera_diagram.jpg)
+![Camera Back](./image/Camera_in_humidity_sensor.png)
+![Camera Back](./image/Camera_in_humidity_sensor_connector.png)
 
 
 ## Parts and Cost

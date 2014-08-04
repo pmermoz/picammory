@@ -6,10 +6,10 @@ The Garden's Camera based on Raspberry Pi (with motion detection)
 
 ## Introduction
 
-![Camera Front](./image/Camera_out_front.jpg)
-![Camera Side](./image/Camera_out_side.jpg)
+![Camera Front](./image/Camera_out_front.png)
+![Camera Side](./image/Camera_out_side.png)
 
-![Camera Inside](./image/Camera_in.jpg)
+![Camera Inside](./image/Camera_in.png)
 
 This project build a high definition camera from a dummy outdoor camera.  
 The camera objective are to:
@@ -28,7 +28,7 @@ Picammera includes the following item:
 	1. Moving Average of previous image (with low memory usage)
 	2. Difference between moving average and current image
 	3. Moving Average Mask to automatically remove noisy pixel
-	4. Surface detection to convert adjacent pixels to surface (with very efficiant algorithm)
+	4. Surface detection to convert adjacent pixels to surface (with very efficient algorithm)
 	5. Surface processing to detect motion
 * Continus HD video recording in memory
 * Save about 10s of video before the trigger event

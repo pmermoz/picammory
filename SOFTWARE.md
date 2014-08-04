@@ -26,7 +26,7 @@ Unmount the partition so that you will be allowed to overwrite the disk by openi
 
 From the Terminal run:
 ``` bash
-    sudo dd if=path_of_your_image.img of=/dev/diskn bs=1m
+sudo dd if=path_of_your_image.img of=/dev/diskn bs=1m
 ```
 Remember to replace n with the number that you noted before!
 
@@ -201,11 +201,11 @@ TypeError: 'dict_values' object does not support indexing
 
 you need to change the line 1470 in /usr/lib/python3/dist-packages/picamera/camera.py from
 ``` Python3
-	return self._encoders.values()[0].frame
+return self._encoders.values()[0].frame
 ```
 to
 ``` Python3
-	return (self._encoders.values())[0].frame
+return (self._encoders.values())[0].frame
 ```
 
 this is fixed in development version but not yet released.
@@ -214,7 +214,7 @@ this is fixed in development version but not yet released.
 Python Imaging Library
 
 ``` bash
-    $ sudo pip-3.2 install Pillow
+$ sudo pip-3.2 install Pillow
 ```
 
 ## Install GPAC
@@ -222,7 +222,7 @@ Multimedia Framework for MPEG-4, VRML, X3D, SVG, LASeR ...
 http://gpac.wp.mines-telecom.fr
 
 ``` bash
-    $ sudo apt-get install gpac
+$ sudo apt-get install gpac
 ```
 
 ## Install Picammory
@@ -344,18 +344,17 @@ Restartd is a daemon for checking running and not running processes. It execute 
 
 Restart can take up to 20s.
 
-``` bash
+
+```bash
 $ sudo apt-get install restartd
-    
 $ sudo nano /etc/restartd.conf
 
 picammory ".*picammorydaemon.py*" "service picammory restart"
-
 ```
 
 ## Finally, Reboot
 
 Reboot the system
 ``` bash
-    $ sudo shutdown -r now
+$ sudo shutdown -r now
 ```
