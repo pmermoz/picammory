@@ -15,9 +15,3 @@ sender = <device_email_address>
 username = <ftp_username>
 password = <ftp_password>
 server = <server name>
-
-[gpio]
-ledRedPin = 23
-ledGreenPin = 24
-ledBluePin = 25
-ledCameraPin = 5

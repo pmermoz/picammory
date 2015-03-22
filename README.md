@@ -1,27 +1,37 @@
-Picammory
+Picammory Mark II
 =========
 
 The Garden's Camera based on Raspberry Pi (with motion detection)
 
+The Mark II includes a roomy waterproof casing and a more cleaner assembly.
+
+![PiCammory_7U4A2217.png](./image/PiCammory_7U4A2217.png) ![PiCammory_7U4A2219.png](./image/PiCammory_7U4A2219.png)
+
+[TOC]
 
 # Introduction
 
-![Camera Front](./image/Camera_out_front.png)
-![Camera Side](./image/Camera_out_side.png)
 
-![Camera Inside](./image/Camera_in.png)
+![PiCammory_7U4A2230.png](./image/PiCammory_7U4A2230.png)
 
-This project build a high definition camera from a dummy outdoor camera.  
+
+This project build a waterproof high definition camera.
+
 The camera objective are to:
 
 1. Take hourly full definition picture of the garden
-2. Detect garden's intrusion from a noisy environment (tree, leaf, wind, sun, ...)
-3. Record garden local temperature and humidity to feed the sprinkler controller (TBD)
+	* In the future a hight speed movies of the garden evolution over a year can be created.
+	* See change in garden following watering setting changes.
+2. Detect and record garden's intrusion within a noisy environment (tree, leaf, wind, sun, ...)
+	* Security
+	* Squirrel observation
+
+![PiCammory_7U4A2201.png](./image/PiCammory_7U4A2207.png)
 
 Picammera includes the following item:
 
 * Capture of one full size image every hour
-* Python3 with C functions for fast image processing
+* Mix of Python3 and C code for fast image processing
 	* Image capture: 100ms
 	* Image processing: 26ms
 * Advanced motion detection algorithms from 5 stages:
@@ -31,172 +41,297 @@ Picammera includes the following item:
 	4. Surface detection to convert adjacent pixels to surface (with very efficient algorithm)
 	5. Surface processing to detect motion
 * Continus HD video recording in memory
-* Save about 10s of video before the trigger event
-* send mail upon motion detection
-* upload movies on a FTP server
-* automatically convert h264 movies to mp4
+	* Save about 10s of video before the trigger event
+* Upload movies on a FTP server
+* Automatic start at boot, and restart after a crash (restartd)
+* Automatically convert h264 movies to mp4 for easy viewing on Mac/PC
 * Bonjour to advertise services
 * ASP for easy file sharing with Mac
-* WiringPi for GPIO access without root privilege
-* Automatic start at boot, and restart after a crash (restartd)
-
-===
 
 # Hardware Build
 
-An overview of the hardware, and electronic schematic, used to build the camera:
+![PiCammory_7U4A2227.png](./image/PiCammory_7U4A2227.png)
+
+An overview of the process used to build the camera
 
 ## Camera Body
 
-The SecurityMan SM-3802 include an aluminum body with plenty of space inside.  
-![Camera Back](./image/Camera_out_body.png)
+![PiCammory_7U4A2230.png](./image/PiCammory_7U4A2230.png)
 
-The presence of multiple grove provide a way to secure the internal circuit board.  
-![Camera Back](./image/Camera_in_body.png)
+The camera body is composed of aluminum body, with good waterproofing, and an excellent 2 axes orientation system.
 
-The only complain is about the arm, very difficult to have a precise horizontal rotation of the camera, very difficult to hold tight.
+![PiCammory_07D_3654.png](./image/PiCammory_07D_3654.png)
 
-The Raspberry Pi and all component are placed on the Styrene Sheets, this way it is easy to insert and remove the Pi from the body. 0.08 thick styrene fit perfectly in the lower grove.  
-![Camera Back](./image/Camera_in.png)  
+The inside is very roomy. A platform on rail can be used to secure the circuit board.  
 
-## Power Supply & Network connector
+## Components platform
+
+The Raspberry Pi, and all future components, are placed on a platform (Styrene Sheets 0.080" tick), this way it is easy to insert and remove the Pi from 
+
+From a 12"x12" styrene sheet, we cut a band of 3.5" (90mm) large.
+
+![PiCammory_7U4A2150.png](./image/PiCammory_7U4A2150.png)
+
+We them bend the extremity of the sheet to a 90º angles. This will constitute the front covering the camera body window.
+The bending is easy done by warming the styrene with a heat tool (like the [Portasol 75-Watt Heat Tool](http://www.amazon.com/dp/B003HHK7KG))
+
+![PiCammory_7U4A2149.png](./image/PiCammory_7U4A2149.png)
+
+### Camera mount
+
+![PiCammory_7U4A2151.png](./image/PiCammory_7U4A2151.png)
+A square hole is drill in the middle of the component platform to handle the camera.
+We used a Dremel rotary tool with a [194 high Speed Cutter](http://www.dremel.com/en-us/Accessories/Pages/ProductDetail.aspx?pid=194) to create  the preliminary square shaped hole.
+The square is them adjusted with a precision blade (like the [X-ACTO Blade](http://www.amazon.com/dp/B00JWFIKOC)).
+
+### Raspeberry attach
+
+![PiCammory_7U4A2167.png](./image/PiCammory_7U4A2167.png)
+
+The Raspeberry is centered on the platform, with a distance "comfortable" for the camera cable.
+We drill 4 holes with a No 43 drill, and create a female screw thread with a tap 4-40 NC.
+
+Note: To avoid misplaced hole, we check after each drilling if all fit well by trying the Raspberry.
+
+We help 
+![PiCammory_7U4A2168.png](./image/PiCammory_7U4A2168.png)
+
+Screw the 4 Hex Standoff (Nylon, #4-40, 1/4" lenght).
+
+![PiCammory_7U4A2179.png](./image/PiCammory_7U4A2179.png)
+
+Put the Raspberry on the standoff, and secure with 4 screw.
+Check if everything fit.
+
+![PiCammory_7U4A2177.png](./image/PiCammory_7U4A2177.png)
+
+We need cut the small part of the standoff screw that get out of the styrene sheet, or they will prevent later on the styrene sheet to touch the camera platform).
+Note: Another possibility to avoid cutting the standoff is to invert the order of creating the Raspberry attach with the camera platform and drill the hole for the standoff through both platform.
+
+The Raspberry is set.
+We can now remove it and put it in a safe place until the final integration.
+
+### Camera platform on rail
+
+![PiCammory_07D_3654_-_Version_2.png](./image/PiCammory_07D_3654_-_Version_2.png)
+
+The component platform is fixed on the top of the camera platform.
+The existing 8 holes cannot easily be used, they are in direct contact with the camera rail, no space for nut or screw head. It is probably possible the create a female screw thread in the existing platform hole, but because a "lot" of forces is needed to unclips the camera platform from the rail, we prefers to add some nuts here.
+
+![PiCammory_7U4A2198.png](./image/PiCammory_7U4A2198.png)
+
+The camera platform is placed under the component platform, centred in larger, but align to the extremity of the platform to limit traction on the component platform when unclipped from the camera.
+
+The idea is to drill 6 holes. create a female thread plus 4 nuts at the extremity.
+
+Usually it is not a good idea to assemble multiple piece with female screw thread, difficult to make it right and tight all layer together. Both platform should have hole without thread and nut at the end to tight everything. But here plastic are malleable, and we expect to tap all the piece at the same time, should be fine, and we get a better coupling by having more thread.
+
+We using a drill No 43 and tap 4-40NC.
+
+First one hole on the left side (border) is drill, tap, and them put bold and screw to maintain in position.
+Same for the opposite side in diagonal hole.
+Now we have all pieces thigh together, we can safly drill the 4 others hole.
+
+![PiCammory_7U4A2181.png](./image/PiCammory_7U4A2181.png)
+
+The 6 screw in place on the component side.
+
+Note: the head of screw are way lower than the Raspberry Pi on standoff.
+
+![PiCammory_7U4A2182.png](./image/PiCammory_7U4A2182.png)
+
+The 6 screw with the 4 nuts on the rail side.
+
+## Waterproof Ethernet connector
+
+The first version of the camera was weak on waterproofing at the external camera network connection.
+The second version use a Waterproof RJ45 Coupler
+
+![PiCammory_7U4A2155.png](./image/PiCammory_7U4A2155.png)
+
+The existing hole in the camera body are 18.9mm and the coupler 25mm. We need a bigger hole.
+The camera box is constitute of aluminum 1.2mm. A Dremel rotary tool with a [194 high Speed Cutter](http://www.dremel.com/en-us/Accessories/Pages/ProductDetail.aspx?pid=194) can easily fix that.
+
+![PiCammory_7U4A2154.png](./image/PiCammory_7U4A2154.png)
+
+The camera rail prevent a symmetrical expansion of the hole, the RJ45 couple will not fit. The hole need to be shifted.
+
+Before to remove some metal, let draw carefully the part to remove. Here in black the part to remove, and red the extreme limit to not pass.
+
+![PiCammory_7U4A2166.png](./image/PiCammory_7U4A2166.png)
+
+The big hole finished.
+
+![PiCammory_7U4A2166.png](./image/PiCammory_7U4A2166_CUT.png)
+
+The RJ45 coupler is designed to joint 2 ethernet cable, and assure the waterproofing on both side. Because one side will be inside the already waterproof camera box, we can safly remove one side waterproofing.
+
+![PiCammory_7U4A2189.png](./image/PiCammory_7U4A2191.png)
+
+We get an external camera network connector through a nice female to female RJ45 coupler, with the external side waterproof, and a low profile inside side.
+
+## Power Over Ethernet (POE)
+
+### Power Over Ethernet (POE) and Passive POE
+
+The standard implementation [Power over Ethernet](http://en.wikipedia.org/wiki/Power_over_Ethernet) is complex and expensive.
+A non-standard implementations named "[passive](http://en.wikipedia.org/wiki/Power_over_Ethernet#Passive)", is more friendly.
+
+The passive PoE use the fact when an ethernet cable is used for 10 and 100Mb only 4 wire over the 8 available are used for data, and 4 are unused.
+
+RJ45 Pin| Wire Color 		| Wire Diagram											| 100Base-T  	| 1000Base-T
+-------:|-------------------|:-----------------------------------------------------:|---------------|------------
+1		|	White/Green		| ![WhiteGreen](./image/PiCammory_WireWhiteGreen.png)	|	Transmit+	|	BI_DA+
+2		|	Green			| ![Green](./image/PiCammory_WireGreen.png)				|	Transmit-	|	BI_DA-
+3		|	White/Orange	| ![WhiteOrange](./image/PiCammory_WireWhiteOrange.png)	|	Receive+	|	BI_DB+
+4		|	Blue			| ![Blue](./image/PiCammory_WireBlue.png)				|	Unused		|	BI_DC+
+5		|	White/Blue		| ![WhiteBlue](./image/PiCammory_WireWhiteBlue.png)		|	Unused		|	BI_DC-
+6		|	Orange			| ![WhiteOrange](./image/PiCammory_WireOrange.png)		|	Receive- 	|	BI_DB-
+7		|	White/Brown		| ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png)	|	Unused 		|	BI_DD+
+8		|	Brown			| ![Brown](./image/PiCammory_WireBrown.png)				|	Unused 		|	BI_DD-
+
+The passive PoE Injector used the 4 remaining wire to provide power, grouping them by 2:
+
+|||Connected to|
+-:|-|-:|-:
+	4 (Blue) ![Blue](./image/PiCammory_WireBlue.png) | + | 5 (White/Blue) ![WhiteBlue](./image/PiCammory_WireWhiteBlue.png) | DC+
+    8 (Brown) ![Brown](./image/PiCammory_WireBrown.png) | + | 7 (White/Brown) ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png) | 0V
+
+The Raspberry Pi needs 5V, but 5V cannot be transported over a long distance (voltage drop). Usually 24V or 48V is used.
+
+Since the camera is not very far and we have CAT6 with 23 AWG wire, we opt for 12V DC.
+The DC/DC converter in the camera take between 5 to 23v input to output 5V.
 
 
-The Raspberry Pi is powered throughout the ethernet cable. When an ethernet cable is used for 10 and 100Mb only 4 cable over the 8 available are used for data. The passive PoE Injector used the remaining 4 unused cables to provide the 12DC powers. In the camera, a DC converter is used to convert the 12V to the Raspberry friendly 5V.
+### Passive PoE Injector
 
-![Camera Back](./image/camera_power.png)
+![PiCammory_7U4A2187.png](./image/PiCammory_7U4A2188.png)
 
-On the Raspberry board, I want to let the maximum of space next to the USB connector for future extension. All the network/power connector are push on one side of the board, within a very limited space.  
+On the router side, we connect the “Passive PoE Injector/Splitter DC Connector” between the router and the network cable going to the camera. Connect a 12V DC power supply to the DC connector.
 
-![Camera Back](./image/Camera_in_network1.png)
+### Passive PoE Splitter
 
- A Keystone Jack is fixed on the board, the 4 data cable (green and orange) are connected to a Cat5e male crimp connector.   
-The Cat5e male connector was cut in half to fit in the small available space .  
-![Camera Back](./image/Camera_in_network2.png)
+The same cable can be used to extract the power, but the splitter is bulky, does not provide the micro USB connector the Raspberry Pi needs. This solution is too complex and bulky for the camera side.
 
-From the Keystone Jack, the 4 power cable (blue and brown) are connected to the input of the DC converter. The cable goes under the board where the UBEC DC converter is fixed   
-![Camera Back](./image/Camera_in_bottom.png)
- 
-The 5V power cable is them connected to a micro USB connector with some Heat Shrink tubing around.
-![Camera Back](./image/Camera_Micro_USB_male_connector1.png)
-![Camera Back](./image/Camera_Micro_USB_male_pin.png)
-![Camera Back](./image/Camera_Micro_USB_male_connector2.png)
+Instead we can create a compact custom splitter.
 
-And finally the power cable is connected to the Raspberry Pi.   
-The custom power cable permit the connection in the small space between the front face and the Raspberry Pi.  
+![PiCammory_7U4A2156.png](./image/PiCammory_7U4A2156.png)
 
-![Camera Back](./image/Camera_in_usb_power.png)
+We start with a 1 foot ethernet cable, we remove a band of the external sheath near one extremity.
 
-A square hole is perform in the back of the camera cover for the Keystone Jack.  
+![PiCammory_7U4A2159.png](./image/PiCammory_7U4A2159.png)
 
-![Camera Back](./image/Camera_in_back.png)
+Cut the Blue ![Blue](./image/PiCammory_WireBlue.png) and White/Blue ![WhiteBlue](./image/PiCammory_WireWhiteBlue.png), and solder them togethers.
+Cut the Brown ![Brown](./image/PiCammory_WireBrown.png) and White/Brown ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png), and solder them togethers.
+
+![PiCammory_7U4A2160.png](./image/PiCammory_7U4A2160.png)
+
+Take the DC/DC Converter, Put a small Heat Shrink tubing on each power cable, and a bigger one on both.
+Solder the Blue ![Blue](./image/PiCammory_WireBlue.png) with the DC/DC Converter Red ![Red](./image/PiCammory_WireRed.png).
+Solder the Brown ![Brown](./image/PiCammory_WireBrown.png) with the DC/DC Converter Black ![Black](./image/PiCammory_WireBlack.png).
+
+![PiCammory_7U4A2161.png](./image/PiCammory_7U4A2161.png)
+
+Cover both power wire with the tubing and shrink them.
+Them same for the bigger tubing over the two power wires.
+Small tubing are also put on the 4 remaining cut wire.
+
+![PiCammory_7U4A2162.png](./image/PiCammory_7U4A2162.png)
+
+Finally, put a big tubing to cover all exposed wire.
+
+![Camera Back](./image/PiCammory_Micro_USB_male_pin.png)
+
+On the other side of the DC/DC Converter, cut the provided connector, to replace it with a micro USB connector.
+
+![PiCammory_7U4A2193.png](./image/PiCammory_7U4A2193.png)
+
+Solder the red and black wire on the pin 1 and 5.
+
+Note: the pin 1, 3, and 5 are really near of each other, to avoid soldering the pin3, it can just be cut from the micro USB connector.
+
+![PiCammory_7U4A2195.png](./image/PiCammory_7U4A2195.png)
+
+Add some glue (from a glue gun) on the micro USB pin and put on top a Heat Shrink tubing.
+
+![PiCammory_7U4A2197.png](./image/PiCammory_7U4A2197.png)
+
+The final cable, compact and simple.
+
+![PiCammory_7U4A2207.png](./image/PiCammory_7U4A2204.png)
+
+The ethernet cable in place.
+
+Note: We initially just put the DC/DC converter under the component platform, later on, we use a cable tie to attach the converter to the ethernet cable.
+
 
 ## Camera Sensor
 
-A custom front plate is cut from the Styrene Sheets to maintain the sensor in place, and hide the Camera inside from curious ;-)   
+![PiCammory_7U4A2205.png](./image/PiCammory_7U4A2205.png)
 
-![Camera Back](./image/Camera_in_custom_front.png)
-![Camera Back](./image/Camera_in_front.png)
+We finally use our little square hole to insert the camera
 
-Note: In this configuration, the sensor is rotated by 180°.
+Note: Compare to the first version, the space between the sensor and raspberry pi permit to the camera the standard orientation.
 
-## RGB LED
+## Final results
 
-A GPIO pin is limited to 16mA, for a total for all pins to 50mA. The design is for 3mA per pin (17 pins * 3mA = 51mA).
-We do not need the usual 20mA per LED, 6mA is probably enough for what is mainly a debug indicator.
-From the measure of the forward voltage for each color, we get the value for each resistor
+![PiCammory_7U4A2207.png](./image/PiCammory_7U4A2207.png)
 
-Color | FV | ohm
-------|----|-----
-Red   |1.7V|270
-Green |2.4V|150
-Blue  |2.5V|150
+Very simple and clean implementation, with a lo of space for future expansion.
 
-The position of the LED was selected to reduce the impact on the GPIO port and keep the cable on the same side of the board to not interfere with the camera sensor cable.
+Note: we removed the RGB LED and temperature sensor from the first version, they was not very useful.
 
-![Camera Back](./image/Camera_in_led.png)
-
-
-![Camera Back](./image/Camera_diagram.png)
-
-## Temperature And Humidity Sensor
-
-TBD
-
-![Camera Back](./image/Camera_in_humidity_sensor.png)
-![Camera Back](./image/Camera_in_humidity_sensor_connector.png)
-
+![PiCammory_7U4A2226.png](./image/PiCammory_7U4A2226.png)
 
 ## Parts and Cost
 
-Description | Reference | Price | Store
-------------|-----------|------:|:-----:
-CPU | Raspberry Pi Model B | $35.00 | [Newark](http://www.newark.com/raspberry-pi/raspbrry-modb-512m/model-b-assembled-board-only/dp/43W5302)
-Sensor | Raspberry PI 5MP Camera Board Module | $25.00 | [Newark](http://www.newark.com/raspberry-pi/rpi-camera-board/unknown/dp/69W0689)
-Camera Body | SecurityMan SM-3802 Dummy Outdoor/Indoor Camera | $16.61 | [Amazon](http://www.amazon.com/gp/product/B003AXEFMI)
-Power Supply | DC 12V 2A | $13.00 |
-SD Card | Transcend 16 GB | $12.76 |
-Power part | Huacam HCP05 Passive PoE Injector/Splitter DC Connector | $6.89 | [Amazon](http://www.amazon.com/gp/product/B00DZLSRJC)
-DC/DC Converter | UBEC Input: 5-23v Output:5V 3a | $4.76 | [Amazon](http://www.amazon.com/gp/product/B00DSKJGIQ)
-Board | Styrene Sheets - White - 12x12 0.08 Thick ($10.99/10)| $1.10  | [Amazon](http://www.amazon.com/gp/product/B00ICMZ62A)
-| Punch Down Keystone Jack Cat-5e RJ-45 ($5.19/5)| $1.04 | [Amazon](http://www.amazon.com/gp/product/B004P3EK2M)
-Cable | 20cm Female to Female 2.54mm 0.1 Inch Jumper Cable Wires Connector ($3.99/5)| $0.80 | [Amazon](http://www.amazon.com/gp/product/B00D8WOWMY)
-USB connector | Micro USB Type A Male 5 Pin Connectors Jack ($3.90/10)| $0.39 | [Amazon](http://www.amazon.com/gp/product/B00AQWUCAA)
-|Cat6, Cat5e crimp connectors pack of 100 ($9.76/100)|$0.10|[Amazon](http://www.amazon.com/gp/product/B00BS92DCK)
-| 3 Resistors: 270 ohm, 2x 150 ohm| $0.10 |
-| Heat Shrink tubing | $0.10 |
-| RGB Led ($2.67/50)| $0.05 | [Amazon](http://www.amazon.com/gp/product/B005VMDROS)
-***Total*** | | ***$117*** |
-
-For future use:
-
-Description | Reference | Price | Store
-------------|-----------|------:|:-----:
-| DHT22 Digital Temperature And Humidity Sensor | $6.49 | [Amazon](http://www.amazon.com/gp/product/B00CDHH3WQ)
-
-
-===
-
+Type | Reference | Pack | Qty | Price | Store
+------------|-----------|------|----:|------:|:-----:
+CPU | Raspberry Pi Model B+ | | 1 | $28.48 | [Amazon](http://www.amazon.com/gp/product/B00LPESRUK)
+Sensor | Raspberry PI 5MP Camera Board Module ||1| $25.00 | [Newark](http://www.newark.com/raspberry-pi/rpi-camera-board/unknown/dp/69W0689)
+Camera Body | Outdoor Weatherproof Heavy Duty Aluminum CCTV Security Surveillance Camera Housing Mount Enclosure M57 ||1| $24.99 | [Amazon](http://www.amazon.com/gp/product/B004CBGFOS)
+Ethernet | AEAC Waterproof RJ45 Coupler, Female to Female Interface diameter 25mm ||1| $14.99 | [Amazon](http://www.amazon.com/gp/product/B00FUVKZRM)
+Power Supply | DC 12V 2A ||1| $13.00 |
+SD Card | Transcend 16 GB ||1| $7.85 | [Amazon](http://www.amazon.com/gp/product/B00FB463E2)
+DC/DC Converter | UBEC Input: 5-23v Output:5V 3a | | 1 | $4.76 | [Amazon](http://www.amazon.com/gp/product/B00DSKJGIQ)
+Power part | Huacam HCP05 Passive PoE Injector/Splitter DC Connector |2 for $6.89|1| $3.45 | [Amazon](http://www.amazon.com/gp/product/B00DZLSRJC)
+Board | Styrene Sheets - White - 12x12 0.08 Thick|4 for $10.99|1| $2.75  | [Amazon](http://www.amazon.com/gp/product/B00ICMZ62A)
+Ethernet | Cat6 Ethernet Patch Cable 1 Foot | 5 for $9.99 | 1 | $2.00 | [Amazon](http://www.amazon.com/gp/product/B00C2DZ7Z6)
+Screw | Nylon 6/6 Machine Screw, Plain Finish, Off-White, Pan Head, Slotted Drive, 1/4" Length, Fully Threaded, #4-40 Threads | 100 for $5.13 | 10 | $0.51 | [Amazon](http://www.amazon.com/gp/product/B00137GQUW)
+Screw | Hex Standoff, Nylon, Male-Female, UNC Threads, Right Handed, Off-White, #4-40 Screw Size, 1/4" Length| 100 for $10.98 | 4 | $0.44 | [Amazon](http://www.amazon.com/gp/product/B00137P8JW)
+USB connector | Micro USB Type A Male 5 Pin Connectors Jack|10 for $3.90|1| $0.39 | [Amazon](http://www.amazon.com/gp/product/B00AQWUCAA)
+Screw | Nylon 6/6 Small Pattern Machine Screw Hex Nut, Off-White, #4-40 Thread Size, 1/4" Width Across Flats, 7/64" Thick | 100 for $5.63 | 4 | $0.23 | [Amazon](http://www.amazon.com/gp/product/B000FN0C4Q)
+| Heat Shrink tubing | | 1 | $0.10 |
+***Total*** | | | | ***$128.94*** |
 
 # Software Installation and Setup
 
-A complete step by step installation:
+A step by step installation
 
 
 ## Setting Up the Raspberry Pi
 
-Copying an image to the SD card in Mac OS X (mostly graphical interface)
-http://elinux.org/RPi_Easy_SD_Card_Setup
+To download and install Raspbian, follow the procedure from http://www.raspberrypi.org/downloads.
 
-Download the image from a mirror or torrent
-http://www.raspberrypi.org/downloads
-    
-Raw Images Raspbian, Release Date	2014-01-07
+Note: at the writing, we used the Raw Images Raspbian, Release Date	2015-02-16
 
-Extract the image by double clicking on the download file
-
-Connect the SD card reader with the SD card inside;
-
-From the Apple () menu, choose About This Mac, then click on More info...; if you are using Mac OS X 10.8.x Mountain Lion then click on System report.
-
-Click on USB (or Card Reader if using an in-built SD card reader) then search for your SD card in the upper right section of the window; click it, then search for BSD name in the lower right section: must be something like diskn where n is a number (for example, disk4). Note this number
-
-Unmount the partition so that you will be allowed to overwrite the disk by opening Disk Utility and unmounting it (do not eject it, or you have to reconnect it). Note: On Mac OS X 10.8.x Mountain Lion, "Verify Disk" (before unmounting) will display the BSD name as "/dev/disk1s1" (or similar), allowing you to skip the previous two steps.
-
-From the Terminal run:
+After putting the micro SD card in a USB reader, we run from the terminal something like:
 ``` bash
-sudo dd if=path_of_your_image.img of=/dev/diskn bs=1m
+diskutil list
+diskutil unmountDisk /dev/<disk# from diskutil>
+sudo dd if=path_of_your_image.img of=/dev/<disk# from diskutil> bs=1m
 ```
-Remember to replace n with the number that you noted before!
 
-	<!> Warning: giving a wrong number for '/dev/diskn' can damage your computer,
+	<!> Warning: giving a wrong device for '/dev/<disk# from diskutil>' can damage your computer,
 		be extremely careful with 'dd' command.
 
 Wait a LONG time!
 
-Insert it in the Raspberry Pi, and have fun
+Insert now the micro SD card in the Raspberry Pi.
 
 ## Raspbian Initial Settings
+
+Connect to the new Raspberry Pi computer, and start the initial configuration:
 
 ``` bash
 $ ssh pi@<ip address>
@@ -207,18 +342,16 @@ Modify the following item:
 
 * 1 ***Expand Filesystem***
 
-* 2 Change User Password
+* 2 ***Change User Password***
 
 * 4 Internationalisation Options
 
-	* I1 Change Locale
+	* I1 Change Locale (to adapt to your own locale)
 	    * Remove en_GB.UTF-8 UTF-8
 	    * Add en_US.UTF-8 UTF-8
-    
-	    * Default: en_US.UTF-8
-    
-    * I2 Change Timezone
-    
+	    * select ok
+	    * Set default to "en_US.UTF-8"
+    * I2 Change Timezone (to adapt to your own timezone)
 	    * US
 	    * Pacific Ocean
 
@@ -229,17 +362,22 @@ Modify the following item:
 
 	* A2 Hostname
 
-		* PiCammory
-    
-Note: only 1 and 5 are required.
+		* PiCammoryGarden
 
-Reboot to apply changes
+* <Finish>
+
+* Reboot now
+	* Yes
+
+Notes:
+* only step 5 is required. 1 and 2 are strongly suggested.
+* If raspi-config does not offert you to reboot, them manually reboot with:
         
-``` bash
-$ sudo shutdown -r now
-```
+	``` bash
+	$ sudo shutdown -r now
+	```
 
-Optionally, after rebooting, check the time and timezone
+After rebooting, check if time and timezone are correct:
 
 ``` bash
 $ date
@@ -250,10 +388,14 @@ $ date
 ``` bash
 $ sudo apt-get update
 $ sudo apt-get upgrade
+$ sudo rpi-update
 ```
+
+A reboot is needed to activate the new firmware
 
 ## Install Netatalk & Bonjour
 Netatalk is a freely-available Open Source AFP fileserver.
+With Netatalk, PiCammory is visible in MAC OS X Finder (thanks to Bonjour), you can copy file with Finder (AFP). Publish the existence of SSH is  just to looks nice.
 
 ``` bash
 $ sudo apt-get install netatalk
@@ -285,92 +427,45 @@ $ sudo nano /etc/avahi/services/ssh.service
         <port>22</port>
     </service>
 </service-group>
+```
 
+Restart the Avahi mDNS daemon:
+
+``` bash
 $ sudo /etc/init.d/avahi-daemon restart
 ```
-Test of Bonjour: Browse for mDNS/DNS-SD services using the Avahi daemon
+
+Now the Raspberry should be visible in the Finder (computer PiCammoryGarden), use your 'pi' account to connect.
+
+Optionally you can install some tools to test Bonjour.
+
+Browse for mDNS/DNS-SD services using the Avahi daemon
 ``` bash
 $ sudo apt-get install avahi-utils
 
-$ avahi-browse -a
-```
-Install library needed for Python
-``` bash
-$ sudo apt-get install libavahi-compat-libdnssd1
-```
-
-## Install Python3 Goodies
-
-``` bash
-$ sudo apt-get install python3-dev
-$ sudo apt-get install python3-setuptools
-$ sudo apt-get install python3-pip
-```
-## Install WiringPi
-GPIO Interface library for the Raspberry Pi
-
-``` bash
-$ git clone git://git.drogon.net/wiringPi
-$ cd wiringPi
-$ ./build
-$ gpio -v
-$ gpio readall
-```
-
-Optional:
-
-``` bash
-$ /usr/local/bin/gpio export 5 out
-$ /usr/local/bin/gpio export 23 out
-$ /usr/local/bin/gpio export 24 out
-$ /usr/local/bin/gpio export 25 out
-$ ls -l /sys/devices/virtual/gpio
-total 0
-drwxrwx--- 3 root gpio 0 Apr 27 08:41 gpio18
-drwxrwx--- 3 root gpio 0 Apr 27 08:41 gpio23
-drwxrwx--- 3 root gpio 0 Apr 27 08:41 gpio24
-drwxrwx--- 3 root gpio 0 Apr 27 08:41 gpio5
-drwxrwx--- 3 root gpio 0 Dec 31  1969 gpiochip0
-```
-
-## Install WiringPi2-Python
-Python-wrapped version of Gordon Henderson's WiringPi version 2.
-
-``` bash
-$ git clone https://github.com/Gadgetoid/WiringPi2-Python.git
-$ cd WiringPi2-Python
-$ sudo python3 setup.py install
+$ avahi-browse -a | grep PiCammoryGarden
++   eth0 IPv4 PiCammoryGarden                               Remote Disk Management local
++   eth0 IPv4 PiCammoryGarden                               SSH Remote Terminal  local
++   eth0 IPv4 PiCammoryGarden                               Apple File Sharing   local
++   eth0 IPv4 PiCammoryGarden [xx:xx:xx:xx:xx:xx]           Workstation          local
 ```
 
 ## Install PiCamera
+
+This package provides a pure Python interface to the Raspberry Pi camera module for Python 3.2 (or above).
+
+[http://picamera.readthedocs.org](http://picamera.readthedocs.org)
 
 ``` bash
 $ sudo apt-get install python3-picamera
 ```
 
-
-
-If you get an error during Picammory execution, like:
-
-``` bash
-    File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1470, in _get_frame
-    return self._encoders.values()[0].frame
-TypeError: 'dict_values' object does not support indexing
-```
-
-you need to change the line 1470 in /usr/lib/python3/dist-packages/picamera/camera.py from
-``` Python3
-return self._encoders.values()[0].frame
-```
-to
-``` Python3
-return (self._encoders.values())[0].frame
-```
-
-this is fixed in development version but not yet released.
-
 ## Install Python3 PIL
 Python Imaging Library
+
+``` bash
+$ sudo apt-get install python3-pip
+```
 
 ``` bash
 $ sudo pip-3.2 install Pillow
@@ -391,12 +486,12 @@ $ sudo apt-get install gpac
 
 for the last released version:
 ``` bash
-$ git clone https://github.com/pmermoz/picammory.git ~/
+$ git clone https://github.com/pmermoz/picammory.git ~/picammory
 ```
 
 or, for the current development version:
 ``` bash
-$ git clone https://github.com/pmermoz/picammory.git -b develop ~/
+$ git clone https://github.com/pmermoz/picammory.git -b develop ~/picammory
 ```
 
 ### Build the C source code
@@ -414,69 +509,27 @@ $ sudo chown pi /var/log/picammory
 
 ### Edit the configuration file
 ``` bash
+$ cp ~/picammory/picammory.ini_template ~/picammory/picammory.ini
 $ nano ~/picammory/picammory.ini
 ```
+Modify the following entries:
 
-* **[camera]**
-	* **name**
-	
-		Name for your camera, this name is used to prefix filenames generated by the camera.
-
-* **[smtp]**
-
-
-	Picammory send mail to inform of system status and detection events.
-	* **username**
-	
-		User name for your email account
-	* **password**
-	
-		Password for your email account
-	* **usetls**
-	
-		YES to use encrypted communication with the email server
-	* **server**
-		
-		Mail server Address and port (like 'smtp.mailserver.com:587')
-
-* **[email]**
-	* **recipient**
-	
-	
-		Email address (or list of) for the recipient of alert
-	* **sender**
-	
-	
-		Email address to identify this program (like 'GardenCam <mycamera@mydomain.com>')
-
-* **[ftp]**
-
-	Picammory upload videos and pictures to an FTP server
-	* **username**
-	
-		FTP user name
-	* **password**
-	
-		FTP password
-	* **server**
-	
-		FTP server Address
-
-* **[gpio]**
-	
-	* **ledRedPin**
-	
-		GPIO Pin number for the Red LED (23)
-	* **ledGreenPin**
-	
-		GPIO Pin number for the Green LED (24)
-	* **ledBluePin**
-	
-		GPIO Pin number for the Blue LED (25)
-	* **ledCameraPin**
-	
-		GPIO Pin number for the Pi Camera LED (5)
-
+Section | Name | Description
+--------|------|-------------
+[camera]| |
+		| name | Name for your camera, this name is used to prefix filenames generated by the camera.
+[smtp]  |      | 	Picammory send mail to inform of system status and detection events.
+ 		|username|User name for your email account
+		|password|Password for your email account
+		|usetls|YES to use encrypted communication with the email server
+		|server|Mail server Address and port (like 'smtp.mailserver.com:587')
+[email]	||
+		|recipient|Email address (or list of) for the recipient of alert
+		|sender|Email address to identify this program (like 'GardenCam <<mycamera@mydomain.com>>')
+[ftp]	|| Picammory upload videos and pictures to an FTP server
+		|username|FTP user name
+		|password|FTP password
+		|server|FTP server Address
 
 ## Install the Automatic start at boot
 
@@ -492,16 +545,16 @@ Make The Startup Script Executable
 $ sudo chmod 755 /etc/init.d/picammory
 ```
 
-Make The Script Run At Startup
+Make The Script Run at Startup
 
 ``` bash
 $ sudo update-rc.d picammory defaults
 ```
 
 ## Install the Automatic restart
-Restartd is a daemon for checking running and not running processes. It execute a script or a program if the process is not running.
+Restartd is a daemon for checking running processes. It execute a script or a program if the process is not running anymore.
 
-Restart can take up to 20s.
+Note: Restartd can take up to 20s to restart a dead process.
 
 
 ```bash
@@ -517,11 +570,6 @@ Reboot the system
 ``` bash
 $ sudo shutdown -r now
 ```
-
-
-
-
-===
 
   
 # Motion detection Algorithm

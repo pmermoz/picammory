@@ -15,7 +15,7 @@ cservice_mod = Extension("cservice",
 
 setup(
     name="picammory",
-    version = '1.0',
+    version = '2.0',
     description = 'PiCammory - Raspberry Pi Camera',
     author = 'Pascal Mermoz',
     author_email = 'pascal@mermoz.net',
