@@ -3,11 +3,7 @@ Picammory Mark II
 
 The Garden's Camera based on Raspberry Pi (with motion detection)
 
-The Mark II includes a roomy waterproof casing and a more cleaner assembly.
-
 ![PiCammory_7U4A2217.png](./image/PiCammory_7U4A2217.png) ![PiCammory_7U4A2219.png](./image/PiCammory_7U4A2219.png)
-
-[TOC]
 
 # Introduction
 
@@ -15,36 +11,36 @@ The Mark II includes a roomy waterproof casing and a more cleaner assembly.
 ![PiCammory_7U4A2230.png](./image/PiCammory_7U4A2230.png)
 
 
-This project build a waterproof high definition camera.
+This project builds a waterproof high definition camera.
 
-The camera objective are to:
+The camera:
 
-1. Take hourly full definition picture of the garden
-	* In the future a hight speed movies of the garden evolution over a year can be created.
-	* See change in garden following watering setting changes.
-2. Detect and record garden's intrusion within a noisy environment (tree, leaf, wind, sun, ...)
+1. Takes hourly full definition picture of the garden
+	* To create high speed movies of the garden over the years.
+	* See changes in the garden following different watering setting.
+2. Detects and records garden's intrusion within a noisy environment (trees, leaves, wind, sun, ...)
 	* Security
 	* Squirrel observation
 
 ![PiCammory_7U4A2201.png](./image/PiCammory_7U4A2207.png)
 
-Picammera includes the following item:
+Picammera includes the following capabilities:
 
-* Capture of one full size image every hour
+* Capture one full size image every hour
 * Mix of Python3 and C code for fast image processing
 	* Image capture: 100ms
 	* Image processing: 26ms
-* Advanced motion detection algorithms from 5 stages:
+* Advanced motion detection algorithms for 5 stages:
 	1. Moving Average of previous image (with low memory usage)
 	2. Difference between moving average and current image
-	3. Moving Average Mask to automatically remove noisy pixel
+	3. Moving Average Mask to automatically remove noisy pixels
 	4. Surface detection to convert adjacent pixels to surface (with very efficient algorithm)
 	5. Surface processing to detect motion
-* Continus HD video recording in memory
+* Continuous HD video recording in memory
 	* Save about 10s of video before the trigger event
-* Upload movies on a FTP server
+* Upload movies on FTP server
 * Automatic start at boot, and restart after a crash (restartd)
-* Automatically convert h264 movies to mp4 for easy viewing on Mac/PC
+* Automatic conversion of h264 movies to mp4 for easy viewing on Mac/PC
 * Bonjour to advertise services
 * ASP for easy file sharing with Mac
 
@@ -52,48 +48,47 @@ Picammera includes the following item:
 
 ![PiCammory_7U4A2227.png](./image/PiCammory_7U4A2227.png)
 
-An overview of the process used to build the camera
+An overview of the process to build the camera
 
 ## Camera Body
 
 ![PiCammory_7U4A2230.png](./image/PiCammory_7U4A2230.png)
 
-The camera body is composed of aluminum body, with good waterproofing, and an excellent 2 axes orientation system.
+The camera body is composed of aluminum body with good waterproofing and an excellent 2 axes orientation system.
 
 ![PiCammory_07D_3654.png](./image/PiCammory_07D_3654.png)
 
 The inside is very roomy. A platform on rail can be used to secure the circuit board.  
 
-## Components platform
+## Component platform
 
-The Raspberry Pi, and all future components, are placed on a platform (Styrene Sheets 0.080" tick), this way it is easy to insert and remove the Pi from 
+The Raspberry Pi and all future components are placed on a platform (Styrene Sheets 0.080" tick), this way it is easy to insert and remove the Pi from the camera.
 
 From a 12"x12" styrene sheet, we cut a band of 3.5" (90mm) large.
 
 ![PiCammory_7U4A2150.png](./image/PiCammory_7U4A2150.png)
 
-We them bend the extremity of the sheet to a 90º angles. This will constitute the front covering the camera body window.
-The bending is easy done by warming the styrene with a heat tool (like the [Portasol 75-Watt Heat Tool](http://www.amazon.com/dp/B003HHK7KG))
+We bend the extremity of the sheet to a 90º angle. This will constitute the front that covers the cameras' body window.
+The bending is easily done by warming the styrene with a heat tool (like the [Portasol 75-Watt Heat Tool](http://www.amazon.com/dp/B003HHK7KG))
 
 ![PiCammory_7U4A2149.png](./image/PiCammory_7U4A2149.png)
 
 ### Camera mount
 
 ![PiCammory_7U4A2151.png](./image/PiCammory_7U4A2151.png)
-A square hole is drill in the middle of the component platform to handle the camera.
+A square hole is drilled in the middle of the component platform to handle the camera.
 We used a Dremel rotary tool with a [194 high Speed Cutter](http://www.dremel.com/en-us/Accessories/Pages/ProductDetail.aspx?pid=194) to create  the preliminary square shaped hole.
-The square is them adjusted with a precision blade (like the [X-ACTO Blade](http://www.amazon.com/dp/B00JWFIKOC)).
+The square is then adjusted with a precision blade (like the [X-ACTO Blade](http://www.amazon.com/dp/B00JWFIKOC)).
 
 ### Raspeberry attach
 
 ![PiCammory_7U4A2167.png](./image/PiCammory_7U4A2167.png)
 
-The Raspeberry is centered on the platform, with a distance "comfortable" for the camera cable.
+The Raspeberry is centered on the platform, with a distance, "comfortable" for the camera cable.
 We drill 4 holes with a No 43 drill, and create a female screw thread with a tap 4-40 NC.
 
-Note: To avoid misplaced hole, we check after each drilling if all fit well by trying the Raspberry.
+Note: To avoid misplaced holes we test Raspberry Pi fitting after each drilling .
 
-We help 
 ![PiCammory_7U4A2168.png](./image/PiCammory_7U4A2168.png)
 
 Screw the 4 Hex Standoff (Nylon, #4-40, 1/4" lenght).
@@ -101,12 +96,12 @@ Screw the 4 Hex Standoff (Nylon, #4-40, 1/4" lenght).
 ![PiCammory_7U4A2179.png](./image/PiCammory_7U4A2179.png)
 
 Put the Raspberry on the standoff, and secure with 4 screw.
-Check if everything fit.
+Check if everything fits.
 
 ![PiCammory_7U4A2177.png](./image/PiCammory_7U4A2177.png)
 
-We need cut the small part of the standoff screw that get out of the styrene sheet, or they will prevent later on the styrene sheet to touch the camera platform).
-Note: Another possibility to avoid cutting the standoff is to invert the order of creating the Raspberry attach with the camera platform and drill the hole for the standoff through both platform.
+We need to cut the small part of the standoff screws that comes out of the styrene sheet, or it will prevent the styrene sheet later to touch the camera platform).
+Note: Another posibility to avoid cutting the standoff is to invert the order of creating the Raspberry attach and the camera platform, then drill the hole for the standoff through both platforms.
 
 The Raspberry is set.
 We can now remove it and put it in a safe place until the final integration.
@@ -116,27 +111,27 @@ We can now remove it and put it in a safe place until the final integration.
 ![PiCammory_07D_3654_-_Version_2.png](./image/PiCammory_07D_3654_-_Version_2.png)
 
 The component platform is fixed on the top of the camera platform.
-The existing 8 holes cannot easily be used, they are in direct contact with the camera rail, no space for nut or screw head. It is probably possible the create a female screw thread in the existing platform hole, but because a "lot" of forces is needed to unclips the camera platform from the rail, we prefers to add some nuts here.
+The existing 8 holes cannot be used easily, they are in direct contact with the camera rail, no space for nut or screw head. It is probably possible to create a female screw thread in the existing platform hole, but because a "lot" of forces is needed to unclip the camera platform from the rail, we prefer to add some nuts here.
 
 ![PiCammory_7U4A2198.png](./image/PiCammory_7U4A2198.png)
 
-The camera platform is placed under the component platform, centred in larger, but align to the extremity of the platform to limit traction on the component platform when unclipped from the camera.
+The camera platform is placed under the component platform, centred in width, but aligned to the extremity of the platform to limit traction on the component platform when unclipped from the camera.
 
 The idea is to drill 6 holes. create a female thread plus 4 nuts at the extremity.
 
-Usually it is not a good idea to assemble multiple piece with female screw thread, difficult to make it right and tight all layer together. Both platform should have hole without thread and nut at the end to tight everything. But here plastic are malleable, and we expect to tap all the piece at the same time, should be fine, and we get a better coupling by having more thread.
+Usually it is not a good idea to assemble multiple pieces with female screw thread, difficult to make it right and tight all layers together. Both platforms should have holes without threads and nuts at the end to tight everything. But here plastic is malleable, and we expect to tap all the pieces at the same time, so it should be fine, and we get a better coupling by having more threads.
 
 We using a drill No 43 and tap 4-40NC.
 
-First one hole on the left side (border) is drill, tap, and them put bold and screw to maintain in position.
+First drill the hole on the left side (border), then tap, and put bold and screw to maintain in position.
 Same for the opposite side in diagonal hole.
-Now we have all pieces thigh together, we can safly drill the 4 others hole.
+Now we have all pieces tighten together, we can safely drill the 4 other holes.
 
 ![PiCammory_7U4A2181.png](./image/PiCammory_7U4A2181.png)
 
-The 6 screw in place on the component side.
+The 6 screws in place on the component side.
 
-Note: the head of screw are way lower than the Raspberry Pi on standoff.
+Note: the screw heads are way lower than the Raspberry Pi on standoff.
 
 ![PiCammory_7U4A2182.png](./image/PiCammory_7U4A2182.png)
 
@@ -149,35 +144,35 @@ The second version use a Waterproof RJ45 Coupler
 
 ![PiCammory_7U4A2155.png](./image/PiCammory_7U4A2155.png)
 
-The existing hole in the camera body are 18.9mm and the coupler 25mm. We need a bigger hole.
-The camera box is constitute of aluminum 1.2mm. A Dremel rotary tool with a [194 high Speed Cutter](http://www.dremel.com/en-us/Accessories/Pages/ProductDetail.aspx?pid=194) can easily fix that.
+The existing hole in the camera body is 18.9mm and the coupler 25mm. We need a bigger hole.
+The camera box is constituted of aluminum 1.2mm. A Dremel rotary tool with a [194 high Speed Cutter](http://www.dremel.com/en-us/Accessories/Pages/ProductDetail.aspx?pid=194) can easily fix that.
 
 ![PiCammory_7U4A2154.png](./image/PiCammory_7U4A2154.png)
 
-The camera rail prevent a symmetrical expansion of the hole, the RJ45 couple will not fit. The hole need to be shifted.
+The camera rail prevents a symmetrical expansion of the hole, the RJ45 couple will not fit. The hole needs to be shifted.
 
-Before to remove some metal, let draw carefully the part to remove. Here in black the part to remove, and red the extreme limit to not pass.
+Before to remove some metal, let's draw carefully the part to remove. Here in black the part to remove, and red the extreme limit to not pass.
 
 ![PiCammory_7U4A2166.png](./image/PiCammory_7U4A2166.png)
 
-The big hole finished.
+The big hole is finished.
 
 ![PiCammory_7U4A2166.png](./image/PiCammory_7U4A2166_CUT.png)
 
-The RJ45 coupler is designed to joint 2 ethernet cable, and assure the waterproofing on both side. Because one side will be inside the already waterproof camera box, we can safly remove one side waterproofing.
+The RJ45 coupler is designed to joint 2 ethernet cables, and assure the waterproofing on both sides. Because one side will be inside of already waterproof camera box, we can safely remove one side waterproofing.
 
 ![PiCammory_7U4A2189.png](./image/PiCammory_7U4A2191.png)
 
-We get an external camera network connector through a nice female to female RJ45 coupler, with the external side waterproof, and a low profile inside side.
+We get an external camera network connector through a nice female to female RJ45 coupler, with the external side waterproof, and a low profile inside.
 
 ## Power Over Ethernet (POE)
 
 ### Power Over Ethernet (POE) and Passive POE
 
 The standard implementation [Power over Ethernet](http://en.wikipedia.org/wiki/Power_over_Ethernet) is complex and expensive.
-A non-standard implementations named "[passive](http://en.wikipedia.org/wiki/Power_over_Ethernet#Passive)", is more friendly.
+A non-standard implementations named "[passive](http://en.wikipedia.org/wiki/Power_over_Ethernet#Passive)" is more friendly.
 
-The passive PoE use the fact when an ethernet cable is used for 10 and 100Mb only 4 wire over the 8 available are used for data, and 4 are unused.
+10Baes-T and 100Base-T needes only 4 wires, the others 4 wires are not used. 
 
 RJ45 Pin| Wire Color 		| Wire Diagram											| 100Base-T  	| 1000Base-T
 -------:|-------------------|:-----------------------------------------------------:|---------------|------------
@@ -190,7 +185,7 @@ RJ45 Pin| Wire Color 		| Wire Diagram											| 100Base-T  	| 1000Base-T
 7		|	White/Brown		| ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png)	|	Unused 		|	BI_DD+
 8		|	Brown			| ![Brown](./image/PiCammory_WireBrown.png)				|	Unused 		|	BI_DD-
 
-The passive PoE Injector used the 4 remaining wire to provide power, grouping them by 2:
+The passive PoE Injector uses the 4 remaining wire to provide power, grouping them by 2:
 
 |||Connected to|
 -:|-|-:|-:
@@ -200,7 +195,7 @@ The passive PoE Injector used the 4 remaining wire to provide power, grouping th
 The Raspberry Pi needs 5V, but 5V cannot be transported over a long distance (voltage drop). Usually 24V or 48V is used.
 
 Since the camera is not very far and we have CAT6 with 23 AWG wire, we opt for 12V DC.
-The DC/DC converter in the camera take between 5 to 23v input to output 5V.
+The DC/DC converter in the camera takes between 5 to 23v input to output 5V.
 
 
 ### Passive PoE Injector
@@ -221,8 +216,8 @@ We start with a 1 foot ethernet cable, we remove a band of the external sheath n
 
 ![PiCammory_7U4A2159.png](./image/PiCammory_7U4A2159.png)
 
-Cut the Blue ![Blue](./image/PiCammory_WireBlue.png) and White/Blue ![WhiteBlue](./image/PiCammory_WireWhiteBlue.png), and solder them togethers.
-Cut the Brown ![Brown](./image/PiCammory_WireBrown.png) and White/Brown ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png), and solder them togethers.
+Cut the Blue ![Blue](./image/PiCammory_WireBlue.png) and White/Blue ![WhiteBlue](./image/PiCammory_WireWhiteBlue.png), and solder them together.
+Cut the Brown ![Brown](./image/PiCammory_WireBrown.png) and White/Brown ![WhiteBrown](./image/PiCammory_WireWhiteBrown.png), and solder them together.
 
 ![PiCammory_7U4A2160.png](./image/PiCammory_7U4A2160.png)
 
@@ -232,23 +227,23 @@ Solder the Brown ![Brown](./image/PiCammory_WireBrown.png) with the DC/DC Conver
 
 ![PiCammory_7U4A2161.png](./image/PiCammory_7U4A2161.png)
 
-Cover both power wire with the tubing and shrink them.
-Them same for the bigger tubing over the two power wires.
-Small tubing are also put on the 4 remaining cut wire.
+Cover both power wires with the tubing and shrink them.
+Then the same for the bigger tubing over the two power wires.
+Small tubings are also put on the 4 remaining cut wires.
 
 ![PiCammory_7U4A2162.png](./image/PiCammory_7U4A2162.png)
 
-Finally, put a big tubing to cover all exposed wire.
+Finally, put a big tubing to cover all exposed wires.
 
 ![Camera Back](./image/PiCammory_Micro_USB_male_pin.png)
 
-On the other side of the DC/DC Converter, cut the provided connector, to replace it with a micro USB connector.
+On the other side of the DC/DC Converter, cut the provided connector to replace it with a micro USB connector.
 
 ![PiCammory_7U4A2193.png](./image/PiCammory_7U4A2193.png)
 
-Solder the red and black wire on the pin 1 and 5.
+Solder the red and black wires on the pin 1 and 5.
 
-Note: the pin 1, 3, and 5 are really near of each other, to avoid soldering the pin3, it can just be cut from the micro USB connector.
+Note: the pin 1, 3, and 5 are really near of each other, to avoid soldering the pin 3, just cut it from the micro USB connector.
 
 ![PiCammory_7U4A2195.png](./image/PiCammory_7U4A2195.png)
 
@@ -256,13 +251,13 @@ Add some glue (from a glue gun) on the micro USB pin and put on top a Heat Shrin
 
 ![PiCammory_7U4A2197.png](./image/PiCammory_7U4A2197.png)
 
-The final cable, compact and simple.
+The final cable is compact and simple.
 
 ![PiCammory_7U4A2207.png](./image/PiCammory_7U4A2204.png)
 
 The ethernet cable in place.
 
-Note: We initially just put the DC/DC converter under the component platform, later on, we use a cable tie to attach the converter to the ethernet cable.
+Note: We initially just put the DC/DC converter under the component platform, later on we use a cable tie to attach the converter to the ethernet cable.
 
 
 ## Camera Sensor
@@ -271,13 +266,13 @@ Note: We initially just put the DC/DC converter under the component platform, la
 
 We finally use our little square hole to insert the camera
 
-Note: Compare to the first version, the space between the sensor and raspberry pi permit to the camera the standard orientation.
+Note: Compare to the first version, the space between the sensor and raspberry pi permits to place the camera in the standard orientation.
 
 ## Final results
 
 ![PiCammory_7U4A2207.png](./image/PiCammory_7U4A2207.png)
 
-Very simple and clean implementation, with a lo of space for future expansion.
+Very simple and clean implementation, with a lot of space for future expansion.
 
 Note: we removed the RGB LED and temperature sensor from the first version, they was not very useful.
 
