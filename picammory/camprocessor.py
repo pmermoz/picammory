@@ -31,7 +31,7 @@ import threading
 import picamera
 
 #--- Local
-from ledprocessor import LEDProcessor
+#from ledprocessor import LEDProcessor
 from ftpuploader import FtpUploader
 from mailservice import MailService
 import config
@@ -75,28 +75,28 @@ class CamProcessorServer(threading.Thread):
 
                 # Take a shot at boot, them every hour on the hour
                 log.info("Start After Boot Picture")
-                LEDProcessor.green(True)
+#                LEDProcessor.green(True)
                 with picamera.PiCamera() as camera:
                     nowtime = datetime.now()
                     imageFilename = "%s-%04d%02d%02d-%02d%02d%02d-Boot.jpg" % (camera_name, nowtime.year, nowtime.month, nowtime.day, nowtime.hour, nowtime.minute, nowtime.second)
                     imageFilepath = self._periodic_path + imageFilename
                     camera.resolution = (2592, 1944)
-                    camera.hflip = True
-                    camera.vflip = True
+#                    camera.hflip = True
+#                    camera.vflip = True
                     #camera.exif_tags['EXIF.UserComment'] = b'Garden'
                     camera.start_preview()
                     # Camera warm-up time
                     time.sleep(2)
-                    LEDProcessor.green(False)
+#                    LEDProcessor.green(False)
                     camera.capture(imageFilepath)
-                    LEDProcessor.green(True)
+#                    LEDProcessor.green(True)
 
                     remotePath = ("%04d" % (nowtime.year), "%02d" % (nowtime.month), "%02d" % (nowtime.day))
                     FtpUploader.upload_move(remotePath, imageFilename, imageFilepath)
-                LEDProcessor.green(False)
+#                LEDProcessor.green(False)
 
-                LEDProcessor.red(False)
-                LEDProcessor.blue(False)
+#                LEDProcessor.red(False)
+#                LEDProcessor.blue(False)
 
                 self.lastPictureTime = datetime.utcnow().hour;
 
@@ -107,11 +107,11 @@ class CamProcessorServer(threading.Thread):
                     with picamera.PiCamera() as camera:
 
                         #camera.led = False
-                        LEDProcessor.camera(False)
+#                        LEDProcessor.camera(False)
 
                         camera.resolution = (1280, 720)
-                        camera.hflip = True
-                        camera.vflip = True
+#                        camera.hflip = True
+#                        camera.vflip = True
                         camera.framerate = 6
                         #camera.video_stabilization = True
                         stream = picamera.PiCameraCircularIO(camera, seconds=5)
@@ -141,7 +141,7 @@ class CamProcessorServer(threading.Thread):
 
                     # Take a shot at boot, them every hour on the hour
                     log.info("Start Periodic Picture")
-                    LEDProcessor.green(True)
+#                    LEDProcessor.green(True)
                     with picamera.PiCamera() as camera:
                         nowtime = datetime.now()
                         log.info('Periodic Picture')
@@ -149,19 +149,19 @@ class CamProcessorServer(threading.Thread):
                         imageFilename = "%s-%04d%02d%02d-%02d0000.jpg" % (camera_name, nowtime.year, nowtime.month, nowtime.day, nowtime.hour)
                         imageFilepath = self._periodic_path + imageFilename
                         camera.resolution = (2592, 1944)
-                        camera.hflip = True
-                        camera.vflip = True
+#                        camera.hflip = True
+#                        camera.vflip = True
                         #camera.exif_tags['EXIF.UserComment'] = b'Garden'
                         camera.start_preview()
                         # Camera warm-up time
                         time.sleep(1)
-                        LEDProcessor.green(False)
+#                        LEDProcessor.green(False)
                         camera.capture(imageFilepath)
-                        LEDProcessor.green(True)
+#                        LEDProcessor.green(True)
 
                         remotePath = ('Periodic', "%04d" % (nowtime.year), "%02d" % (nowtime.month), "%02d" % (nowtime.day))
                         FtpUploader.upload_move(remotePath, imageFilename, imageFilepath)
-                    LEDProcessor.green(False)
+#                    LEDProcessor.green(False)
 
 
         except EnvironmentError as e:
@@ -240,7 +240,7 @@ class CamProcessorServer(threading.Thread):
         log.info('Motion stopped! no_motion=%d, elapseTime=%fs' % (no_motion, (time.time() - startDetectionTime)))
         camera.split_recording(stream)
 
-        LEDProcessor.red(True)
+#        LEDProcessor.red(True)
 
         remotePath = ("%04d" % (nowtime.year), "%02d" % (nowtime.month), "%02d" % (nowtime.day))
         FtpUploader.merge_convert_and_upload_move(beforeFilepath, afterFilepath, remotePath, mergeFilename, mergeFilepath)
@@ -248,7 +248,7 @@ class CamProcessorServer(threading.Thread):
         log.info('Motion detected!')
         #MailService.send_message("Motion detected!", "")
 
-        LEDProcessor.red(False)
+#        LEDProcessor.red(False)
 
 
 class CamProcessor(object):
