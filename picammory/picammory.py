@@ -27,11 +27,11 @@ import time
 import subprocess
 
 #--- 3rd party
-import wiringpi2
+#import wiringpi2
 
 #--- Local
 from mailservice import MailService
-from ledprocessor import LEDProcessor
+#from ledprocessor import LEDProcessor
 from ftpuploader import FtpUploader
 from camprocessor import CamProcessor
 import config
@@ -59,10 +59,10 @@ class Picammory(object):
 
             #---
 
-            for gpio_pin in (5, 23, 24, 25):
-                subprocess.call(['/usr/local/bin/gpio', 'export', str(gpio_pin), 'out'])
+#            for gpio_pin in (5, 23, 24, 25):
+#                subprocess.call(['/usr/local/bin/gpio', 'export', str(gpio_pin), 'out'])
 
-            wiringpi2.wiringPiSetupSys()
+#            wiringpi2.wiringPiSetupSys()
 
             #---
 
@@ -70,10 +70,10 @@ class Picammory(object):
 
             #---
 
-            LEDProcessor.start()
-            service_list.append(LEDProcessor)
-
-            LEDProcessor.blue(True)
+#            LEDProcessor.start()
+#            service_list.append(LEDProcessor)
+#
+#            LEDProcessor.blue(True)
 
             #---
 
@@ -81,14 +81,14 @@ class Picammory(object):
             service_list.append(MailService)
             MailService.send_message('Picammory', 'Picammory Server Starting')
 
-            LEDProcessor.green(True)
+#            LEDProcessor.green(True)
 
             #---
 
             FtpUploader.start()
             service_list.append(FtpUploader)
 
-            LEDProcessor.red(True)
+#            LEDProcessor.red(True)
 
             #---
 
@@ -96,12 +96,12 @@ class Picammory(object):
             self.cam_processor = CamProcessor(os.path.expanduser('~/picammory_storage/'))
             service_list.append(self.cam_processor)
 
-            LEDProcessor.blue(False)
+#            LEDProcessor.blue(False)
 
             #---
 
-            LEDProcessor.green(False)
-            LEDProcessor.red(False)
+#            LEDProcessor.green(False)
+#            LEDProcessor.red(False)
 
             #--- Wait until one thread stop...
             stopped_service = None
